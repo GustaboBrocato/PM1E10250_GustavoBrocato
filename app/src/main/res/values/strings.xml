@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">PM1E10250</string>
+    <string name="nombres">Ingrese el nombre del contacto</string>
+    <string name="telefono">Ingrese el numero de telefono</string>
+    <string name="nota">Ingrese alguna nota que desee</string>
+    <string name="respuesta">Registro ingresado con exito!</string>
+    <string name="errorIngreso">Error! no se puede registrar!</string>
+</resources>
