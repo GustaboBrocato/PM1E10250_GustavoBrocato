@@ -88,6 +88,23 @@ public class ActivityContactos extends AppCompatActivity {
                             deleteContact(listContacto.get(i).getId());
                         }
                     });
+                    btn_actualizar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(ActivityContactos.this, ActivityEditar.class);
+                            Integer id = listContacto.get(i).getId();
+                            String nombre = listContacto.get(i).getNombre();
+                            String telefono = listContacto.get(i).getTelefono();
+                            String nota = listContacto.get(i).getNota();
+                            intent.putExtra("id",id);
+                            intent.putExtra("nombres", nombre);
+                            intent.putExtra("pais", listContacto.get(i).getPais());
+                            intent.putExtra("telefono", telefono);
+                            intent.putExtra("nota", nota);
+                            intent.putExtra("imagen", listContacto.get(i).getImagen());
+                            startActivity(intent);
+                        }
+                    });
                 }
             });
             list_contactos.setOnTouchListener(new View.OnTouchListener() {

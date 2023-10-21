@@ -18,6 +18,7 @@ public class Transacciones {
 
 
 
+
     //Consultas de tabla contactos
     public static final String CreateTableContactos = "CREATE TABLE " + tablaContactos +"( id INTEGER PRIMARY KEY AUTOINCREMENT,"+ nombres + " TEXT," + pais + " TEXT," + codigo +" TEXT,"
             + telefono + " TEXT," + nota + " TEXT, "+ imagen + " BLOB )";

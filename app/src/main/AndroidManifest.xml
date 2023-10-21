@@ -42,6 +42,9 @@
         android:theme="@style/Theme.PM1E10250"
         tools:targetApi="31">
         <activity
+            android:name=".ActivityEditar"
+            android:exported="false" />
+        <activity
             android:name=".ActivityContactos"
             android:exported="false" />
         <activity

@@ -14,16 +14,15 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -32,11 +31,10 @@ import com.example.pm1e10250.Config.Transacciones;
 import com.example.pm1e10250.Models.Paises;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.util.ArrayList;
-import android.util.Log;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class ActivityEditar extends AppCompatActivity {
 
     SQLiteConnection conexion;
     static final int peticion_acceso_camera = 101;
@@ -53,25 +51,41 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> arregloPaises;
     ArrayAdapter<CharSequence> adp;
 
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_editar);
+
+        Intent intent = getIntent();
+        int id = intent.getIntExtra("id", 0);
+        String nombreIntent = intent.getStringExtra("nombres");
+        String paisIntent = intent.getStringExtra("pais");
+        String telefonoIntent = intent.getStringExtra("telefono");
+        String notaIntent = intent.getStringExtra("nota");
+        byte[] imagenIntent = intent.getByteArrayExtra("imagen");
 
         conexion = new SQLiteConnection(this, Transacciones.namedb, null, 1);
-        nombre = (EditText) findViewById(R.id.txt_nombre);
-        telefono = (EditText) findViewById(R.id.txt_telefono);
-        nota = (EditText) findViewById(R.id.txt_nota);
-        paises = (Spinner) findViewById(R.id.cmb_paises);
-        imagenPerfil = (ImageButton) findViewById(R.id.img_perfil);
-        btn_addPais = (ImageButton) findViewById(R.id.btn_addPais);
-        guardar = (Button) findViewById(R.id.btn_Guardar);
-        contactos = (Button) findViewById(R.id.btn_Contactos);
+        nombre = (EditText) findViewById(R.id.txt_actualizarNombre);
+        telefono = (EditText) findViewById(R.id.txt_actualizarTelefono);
+        nota = (EditText) findViewById(R.id.txt_actualizarNota);
+        paises = (Spinner) findViewById(R.id.cmb_actualizarPaises);
+        imagenPerfil = (ImageButton) findViewById(R.id.img_actualizarPerfil);
+        btn_addPais = (ImageButton) findViewById(R.id.btn_addactualizarAddPais);
+        guardar = (Button) findViewById(R.id.btn_actualizarContacto);
 
         getPaises();
 
         adp = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arregloPaises);
         paises.setAdapter(adp);
+
+        nombre.setText(nombreIntent);
+        telefono.setText(telefonoIntent);
+        nota.setText(notaIntent);
 
         paises.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -92,65 +106,6 @@ public class MainActivity extends AppCompatActivity {
                 permisos();
             }
         });
-
-        View.OnClickListener buttonClick = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Class<?> actividad = null;
-                if (view.getId()==R.id.btn_Contactos) {
-                    actividad = ActivityContactos.class;
-                }
-                if (actividad != null) {
-                    moveActivity(actividad);
-                }
-            }
-        };
-
-        contactos.setOnClickListener(buttonClick);
-
-        guardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(nombre.getText().toString().trim().isEmpty() || telefono.getText().toString().trim().isEmpty() || nota.getText().toString().trim().isEmpty()){
-                    nombre.setError("Porfavor ingrese un nombre para el contacto, no se permiten campos vacios!!!");
-                    telefono.setError("Porfavor ingrese un numero telefonico, no se permiten campos vacios!!!");
-                    nota.setError("Porfavor ingrese una nota para el contacto, no se permiten campos vacios!!!");
-                } else if (imageBitmap == null) {
-                    Toast.makeText(getApplicationContext(), "Porfavor tome una foto al contacto!", Toast.LENGTH_LONG).show();
-                }else if (paises.getSelectedItemPosition() == 0){
-                    Toast.makeText(getApplicationContext(), "Porfavor seleccione un pais de la lista!", Toast.LENGTH_LONG).show();
-                }else{
-                    addContact();
-                }
-            }
-        });
-    }
-
-    private void addContact() {
-        try {
-
-            SQLiteDatabase db = conexion.getWritableDatabase();
-
-            ContentValues valores = new ContentValues();
-            valores.put(Transacciones.nombres, nombre.getText().toString());
-            valores.put(Transacciones.pais, paisSeleccionado);
-            valores.put(Transacciones.codigo, codigoSeleccionado);
-            valores.put(Transacciones.telefono, telefono.getText().toString());
-            valores.put(Transacciones.nota, nota.getText().toString());
-            valores.put(Transacciones.imagen, imagenPerfilByteArray);
-
-            Long result = db.insert(Transacciones.tablaContactos, Transacciones.id, valores);
-
-            Toast.makeText(this, getString(R.string.respuesta), Toast.LENGTH_SHORT).show();
-            db.close();
-            recreate();
-            nombre.setText("");
-            telefono.setText("");
-            nota.setText("");
-            paises.setSelection(0);
-        } catch (Exception e) {
-            Toast.makeText(this, getString(R.string.errorIngreso), Toast.LENGTH_SHORT).show();
-        }
     }
 
     private void getPaises() {
@@ -183,11 +138,6 @@ public class MainActivity extends AppCompatActivity {
                     listPais.get(i).getPais() + " - " +
                     listPais.get(i).getCodigo());
         }
-    }
-
-    private void moveActivity(Class<?> actividad) {
-        Intent intent = new Intent(getApplicationContext(), actividad);
-        startActivity(intent);
     }
 
     private void permisos() {
@@ -302,5 +252,12 @@ public class MainActivity extends AppCompatActivity {
         paises.setAdapter(adp);
     }
 
-
+    private int getPositionOfCountryName(List<String> countryList, String specificCountryName) {
+        for (int i = 0; i < countryList.size(); i++) {
+            if (countryList.get(i).equals(specificCountryName)) {
+                return i;
+            }
+        }
+        return -1; // Country name not found
+    }
 }

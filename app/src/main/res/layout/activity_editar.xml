@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:backgroundTint="@color/design_default_color_secondary_variant"
+    android:backgroundTint="@color/design_default_color_secondary"
     android:backgroundTintMode="multiply"
-    tools:context=".MainActivity">
+    tools:context=".ActivityEditar">
 
     <ImageView
-        android:id="@+id/img_uthlogo"
+        android:id="@+id/img_uthlogoActualizar"
         android:layout_width="103dp"
         android:layout_height="78dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/uthlogo" />
 
     <TextView
-        android:id="@+id/txtview_pais"
+        android:id="@+id/txtview_actualizarPais"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -29,10 +29,10 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_perfil" />
+        app:layout_constraintTop_toBottomOf="@+id/img_actualizarPerfil" />
 
     <Spinner
-        android:id="@+id/cmb_paises"
+        android:id="@+id/cmb_actualizarPaises"
         android:layout_width="324dp"
         android:layout_height="53dp"
         android:layout_marginStart="20dp"
@@ -48,10 +48,10 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtview_pais" />
+        app:layout_constraintTop_toBottomOf="@+id/txtview_actualizarPais" />
 
     <TextView
-        android:id="@+id/txtview_nombre"
+        android:id="@+id/txtview_actualizarNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -62,10 +62,10 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cmb_paises" />
+        app:layout_constraintTop_toBottomOf="@+id/cmb_actualizarPaises" />
 
     <EditText
-        android:id="@+id/txt_nombre"
+        android:id="@+id/txt_actualizarNombre"
         style="@style/HintStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -79,10 +79,10 @@
         android:textColorHint="@color/material_dynamic_neutral60"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtview_nombre" />
+        app:layout_constraintTop_toBottomOf="@+id/txtview_actualizarNombre" />
 
     <TextView
-        android:id="@+id/txtview_telefono"
+        android:id="@+id/txtview_actualizarTelefono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -93,10 +93,10 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_nombre" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_actualizarNombre" />
 
     <EditText
-        android:id="@+id/txt_telefono"
+        android:id="@+id/txt_actualizarTelefono"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -109,10 +109,10 @@
         android:textColorHint="@color/material_dynamic_neutral60"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtview_telefono" />
+        app:layout_constraintTop_toBottomOf="@+id/txtview_actualizarTelefono" />
 
     <TextView
-        android:id="@+id/txtview_nota"
+        android:id="@+id/txtview_actualizarNota"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -123,10 +123,10 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_telefono" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_actualizarTelefono" />
 
     <EditText
-        android:id="@+id/txt_nota"
+        android:id="@+id/txt_actualizarNota"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -140,30 +140,21 @@
         android:textColorHint="@color/material_dynamic_neutral60"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtview_nota" />
+        app:layout_constraintTop_toBottomOf="@+id/txtview_actualizarNota" />
 
     <Button
-        android:id="@+id/btn_Guardar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="30dp"
-        android:text="Guardar Contacto"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_nota" />
-
-    <Button
-        android:id="@+id/btn_Contactos"
+        android:id="@+id/btn_actualizarContacto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="50dp"
-        android:text="Contactos"
+        android:text="Actualizar Contacto"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_nota" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_actualizarNota" />
+
 
     <ImageButton
-        android:id="@+id/img_perfil"
+        android:id="@+id/img_actualizarPerfil"
         android:layout_width="149dp"
         android:layout_height="167dp"
         android:layout_marginTop="15dp"
@@ -171,21 +162,21 @@
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_uthlogo"
+        app:layout_constraintTop_toBottomOf="@+id/img_uthlogoActualizar"
         app:srcCompat="@drawable/image" />
 
     <ImageButton
-        android:id="@+id/btn_addPais"
+        android:id="@+id/btn_addactualizarAddPais"
         android:layout_width="43dp"
         android:layout_height="46dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
+        android:onClick="showAddPaisDialog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toEndOf="@+id/cmb_paises"
-        app:layout_constraintTop_toBottomOf="@+id/txtview_pais"
-        app:srcCompat="@android:drawable/ic_input_add"
-        android:onClick="showAddPaisDialog"/>
+        app:layout_constraintStart_toEndOf="@+id/cmb_actualizarPaises"
+        app:layout_constraintTop_toBottomOf="@+id/txtview_actualizarPais"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
